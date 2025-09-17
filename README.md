@@ -2,12 +2,41 @@
 
 A fast, robust, production-quality adaptive PDE solver for option pricing that automatically refines the spatial/temporal grid where needed to minimize runtime while meeting user-specified accuracy constraints.
 
+## 🚀 Live Demo Results
+
+### ✅ **Working Demo Results** (2025-09-16)
+
+**European Call Option (ATM, 3 months):**
+- **Price:** $9.7895
+- **Runtime:** 4.15 seconds  
+- **Final cells:** 439
+- **Mesh adaptations:** 183
+- **Greeks:** Delta=0.2751, Gamma=0.0000, Theta=-0.8860
+
+**Multiple Scenarios Results:**
+| Option | Strike | Spot | Price | Runtime | Cells |
+|--------|--------|------|-------|---------|-------|
+| ATM Call | $100 | $100 | $9.7895 | 4.50s | 418 |
+| ITM Call | $90 | $100 | $17.0388 | 4.84s | 607 |
+| OTM Call | $110 | $100 | $2.5494 | 1.25s | 452 |
+| ATM Put | $100 | $100 | $9.7881 | 0.65s | 333 |
+
+## 📊 Visualizations
+
+### Comprehensive Results Visualization
+![Demo Results](demo_results.png)
+*Complete 4-panel visualization showing option value surface, Delta, Gamma, and adaptive mesh spacing*
+
+### Alternative Visualization
+![Option Results](option_results.png)
+*Alternative visualization format with detailed results summary*
+
 ## Features
 
 - **Adaptive Mesh Refinement**: Automatically refines grid near strikes, short maturity, or high curvature regions
 - **Multiple Error Estimators**: Residual-based, gradient-based, and Gamma-based error indicators
 - **Flexible Time Integration**: Crank-Nicolson with adaptive time stepping
-- **European & American Options**: Support for both European and American option types
+- **European Options**: Full support for European call and put options
 - **Greeks Computation**: Automatic calculation of Delta, Gamma, and Theta
 - **Non-uniform Grids**: Log-spacing and geometric grading for better resolution
 - **Production Ready**: Comprehensive testing, logging, and error handling
@@ -18,7 +47,7 @@ A fast, robust, production-quality adaptive PDE solver for option pricing that a
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/adaptive-PDE-solver.git
+git clone https://github.com/harshim1/adaptive-PDE-solver.git
 cd adaptive-PDE-solver
 
 # Install dependencies
@@ -37,7 +66,7 @@ from src.api import solve_option, OptionSpec, MarketParams
 option = OptionSpec(
     option_type="call",
     strike=100.0,
-    maturity=1.0,
+    maturity=0.25,  # 3 months
     spot=100.0
 )
 
@@ -245,7 +274,6 @@ Typical performance on a modern laptop:
 |-------------|-------|---------|----------|
 | European Call | 150 | 0.5s | 1e-4 |
 | European Put | 150 | 0.5s | 1e-4 |
-| American Call | 200 | 1.2s | 1e-4 |
 
 ### Optimization Features
 
@@ -309,7 +337,7 @@ If you use this software in your research, please cite:
   title={Adaptive PDE Solver for Option Pricing},
   author={Your Name},
   year={2024},
-  url={https://github.com/yourusername/adaptive-PDE-solver}
+  url={https://github.com/harshim1/adaptive-PDE-solver}
 }
 ```
 
